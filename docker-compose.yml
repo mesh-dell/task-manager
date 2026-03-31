@@ -1,0 +1,44 @@
+services:
+  app:
+    build: .
+    container_name: laravel_app
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=${APP_KEY}
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=laravel_db
+      - DB_USERNAME=sail
+      - DB_PASSWORD=password
+      - CACHE_STORE=file
+      - SESSION_DRIVER=file
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "php artisan migrate --force &&
+             php artisan db:seed --force &&
+             php artisan serve --host=0.0.0.0 --port=8000"
+
+  db:
+    image: mysql:8.4
+    container_name: mysql_db
+    environment:
+      - MYSQL_DATABASE=laravel_db
+      - MYSQL_USER=sail
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=root_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "sail", "-ppassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:
