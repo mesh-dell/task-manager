@@ -274,6 +274,16 @@ Response:
 
 ---
 
+## Future Improvements
+
+- **Authentication** — add user accounts so tasks are private per user
+- **Task categories/tags** — group related tasks together
+- **Due date reminders** — email notifications when tasks are approaching deadline
+- **Soft deletes** — archive tasks instead of permanently deleting
+- **Pagination** — handle large task lists efficiently
+- **Rate limiting** — protect the API from abuse
+- **CI/CD pipeline** — automate Docker build and push on every GitHub push
+
 ## Project Structure
 
 ```
