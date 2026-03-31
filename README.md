@@ -10,7 +10,7 @@ A RESTful Task Management API built with Laravel 11, MySQL, and Vue 3.
 
 ## Tech Stack
 
-- **Backend**: Laravel 11, PHP 8.4
+- **Backend**: Laravel 13.2.0, PHP 8.4
 - **Database**: MySQL 8.4
 - **Frontend**: Vue 3, TypeScript, Tailwind CSS, Vite
 - **Deployment**: Docker, Railway
